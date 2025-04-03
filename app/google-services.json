@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "31163342000",
+    "firebase_url": "https://furrytrack-c3dd4-default-rtdb.firebaseio.com",
+    "project_id": "furrytrack-c3dd4",
+    "storage_bucket": "furrytrack-c3dd4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31163342000:android:82b82ff3ef89a6cfcf6f75",
+        "android_client_info": {
+          "package_name": "com.example.furrytrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHjhucQWOybNb0McGgmstcohFJJnJbiN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

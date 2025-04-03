@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Market.CategoryPetActivity">
+
+    <TextView
+        android:id="@+id/slogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Выберите Ваше животное"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:layout_marginTop="60dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/first_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slogan"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/cat"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/cat" />
+
+        <ImageView
+            android:id="@+id/dog"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/dog" />
+
+        <ImageView
+            android:id="@+id/rabbit"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/rabbit" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/second_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/first_line"
+        >
+
+        <ImageView
+            android:id="@+id/owl"
+            android:layout_width="97dp"
+            android:layout_height="98dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/owl" />
+
+        <ImageView
+            android:id="@+id/pig"
+            android:layout_width="98dp"
+            android:layout_height="97dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/pig" />
+
+        <ImageView
+            android:id="@+id/cow"
+            android:layout_width="94dp"
+            android:layout_height="97dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/cow" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/third_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/second_line"
+        >
+
+
+        <ImageView
+            android:id="@+id/rooster"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/rooster"
+            />
+
+        <ImageView
+            android:id="@+id/chicken"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/chicken"
+            />
+
+        <ImageView
+            android:id="@+id/makaka"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/makaka"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fourth_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/third_line"
+        >
+
+        <ImageView
+            android:id="@+id/pingvin"
+            android:layout_width="98dp"
+            android:layout_height="101dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/pingvin" />
+
+        <ImageView
+            android:id="@+id/elephant"
+            android:layout_width="101dp"
+            android:layout_height="112dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/elephant" />
+
+        <ImageView
+            android:id="@+id/fox"
+            android:layout_width="107dp"
+            android:layout_height="112dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/fox" />
+    </LinearLayout>
+
+</RelativeLayout>

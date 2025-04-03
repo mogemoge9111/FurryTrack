@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="70dp"/>
+
+        <TextView
+            android:id="@+id/pet_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/pet_type_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/pet_gender_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/birth_date_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/adoption_date_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/important_info_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/last_vet_visit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_vet_visit"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/last_walk_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_walk"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/last_wash_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_wash"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/add_record_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/add_record"/>
+    </LinearLayout>
+</ScrollView>

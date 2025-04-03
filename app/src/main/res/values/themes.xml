@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- В styles.xml измените тему -->
+    <style name="Theme.FurryTrack" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Добавьте это -->
+        <item name="materialButtonStyle">@style/MyButtonStyle</item>
+    </style>
+
+    <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+</resources>

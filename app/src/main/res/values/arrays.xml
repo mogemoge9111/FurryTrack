@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pet_types">
+        <item>@string/cat</item>
+        <item>@string/dog</item>
+        <item>@string/hippo</item>
+        <item>@string/other</item>
+    </array>
+
+    <array name="pet_genders">
+        <item>@string/male</item>
+        <item>@string/female</item>
+    </array>
+</resources>

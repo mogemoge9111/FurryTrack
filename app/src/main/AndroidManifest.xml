@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/furrytrack"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/furrytrack"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FurryTrack">
+        <activity
+            android:name=".Market.AddNewPetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Market.CategoryPetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.ProfileUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Market.MarketActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Market.AdminDeletePostsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Welcome.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Welcome.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Welcome.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BasicPetsWind.PetActivity" />
+        <activity
+            android:name=".BasicPetsWind.AddPetActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".BasicPetsWind.PetDetailsActivity" />
+        <activity android:name=".SettingsActivity" />
+    </application>
+
+</manifest>

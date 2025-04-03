@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">FurryTrack</string>
+    <string name="welcome_message">Добро пожаловать в приложение по отслеживанию ухода за Вашим питомцем!</string>
+    <string name="enter_name_hint">Как Вас зовут...</string>
+    <string name="save">Сохранить</string>
+    <string name="about">О программе</string>
+    <string name="settings">Настройки</string>
+    <string name="logout">Выйти</string>
+    <string name="add_pet">Добавить питомца</string>
+    <string name="pet_name_hint">Введите имя</string>
+    <string name="pet_type_hint">Тип животного</string>
+    <string name="pet_gender_hint">Пол</string>
+    <string name="birth_date_hint">Дата рождения</string>
+    <string name="adoption_date_hint">Дата появления в семье</string>
+    <string name="important_info_hint">Важное</string>
+    <string name="save_pet">Сохранить питомца</string>
+    <string name="cat">Кошка</string>
+    <string name="dog">Собака</string>
+    <string name="hippo">Бегемот</string>
+    <string name="other">Другое</string>
+    <string name="male">Самец</string>
+    <string name="female">Самка</string>
+    <string name="enable_vet_notifications">Включить уведомления о предстоящем осмотре у ветеринара за 24 часа</string>
+    <string name="enable_birthday_notifications">Включить уведомление о дне рождении</string>
+    <string name="about_message">Проектное домашнее задание по НИСу \"Основы Android-разработки на Java\"\n\nВыполнила Замотаева Анастасия Владимировна, гр. БПИ 239</string>
+    <string name="add_record">Добавить запись</string>
+    <string name="last_vet_visit">Последний поход к ветеринару</string>
+    <string name="last_walk">Последняя прогулка</string>
+    <string name="last_wash">Последняя помывка</string>
+    <string name="other_notes">Другие заметки</string>
+    <string name="my_pets_title">Мои питомцы</string>
+    <string name="pets_list_description">Список ваших питомцев</string>
+</resources>
