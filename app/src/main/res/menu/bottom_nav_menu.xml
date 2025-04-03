@@ -3,15 +3,15 @@
     <item
         android:id="@+id/nav_pets"
         android:title="Питомцы"
-        android:icon="@drawable/ic_pets"/>
+        android:icon="@drawable/pet"/>
 
     <item
         android:id="@+id/nav_market"
-        android:title="Продажа"
-        android:icon="@drawable/ic_market"/>
+        android:title="Объявления"
+        android:icon="@drawable/market"/>
 
     <item
         android:id="@+id/nav_profile"
         android:title="Профиль"
-        android:icon="@drawable/ic_profile"/>
+        android:icon="@drawable/menu_user"/>
 </menu>

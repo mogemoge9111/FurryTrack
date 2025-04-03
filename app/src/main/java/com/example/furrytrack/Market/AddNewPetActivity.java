@@ -1,161 +1,237 @@
 package com.example.furrytrack.Market;
 
-import android.app.ComponentCaller;
-import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.util.Base64;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.furrytrack.R;
+import com.example.furrytrack.Welcome.LoginActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rey.material.widget.EditText;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class AddNewPetActivity extends AppCompatActivity {
 
-    private String categoryName, Type, Price, Info, PName;
-
-    private ImageView petImage;
-
-    private EditText petName, petType, petPrice, petInfo;
-
-    private Spinner petGenderSpinner;
-
-    private Calendar birthDate = Calendar.getInstance();
-
-    private Button addNewPetButton;
-
     private static final int GALLERYPICK = 1;
-
+    private String categoryName, Type, Price, Info, PName, saveCurrentDate, saveCurrentTime, productRandomKey;
+    private ImageView petImage;
+    private EditText petName, petType, petPrice, petInfo;
+    private Spinner petGenderSpinner;
+    private Button addNewPetButton, birthDateButton;
     private Uri ImageUri;
+    private DatabaseReference ProductsRef;
+    private ProgressDialog loadingBar;
+    private Calendar birthDate = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_new_pet);
 
-        init();
+        // Инициализация компонентов
+        initViews();
+        setupFirebase();
+        setupListeners();
+    }
 
+    private void initViews() {
+        petImage = findViewById(R.id.select_pet_image);
+        petName = findViewById(R.id.pet_name);
+        petType = findViewById(R.id.pet_type);
+        petPrice = findViewById(R.id.price);
+        petInfo = findViewById(R.id.pet_info);
         petGenderSpinner = findViewById(R.id.pet_gender_spinner);
-        Button birthDateButton = findViewById(R.id.birth_date_button);
+        addNewPetButton = findViewById(R.id.btn_app_new_pet);
+        birthDateButton = findViewById(R.id.birth_date_button);
 
-        ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(
-                this, R.array.pet_genders, android.R.layout.simple_spinner_item
-        );
-        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        petGenderSpinner.setAdapter(genderAdapter);
-
-        setupDatePicker(birthDateButton, birthDate, "Дата рождения");
-
-        petImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OpenGallery();
-            }
-        });
-
-        addNewPetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ValidatePetData();
-            }
-        });
-
-
+        // Настройка ProgressDialog
+        loadingBar = new ProgressDialog(this);
+        loadingBar.setCancelable(false);
     }
 
-    private void ValidatePetData() {
-        Type = petType.getText().toString();
-        Price = petPrice.getText().toString();
-        Info = petInfo.getText().toString();
-        PName = petName.getText().toString();
-
-        if(ImageUri == null){
-            Toast.makeText(this, "Добавьте изображение питомца", Toast.LENGTH_SHORT).show();
+    private void setupFirebase() {
+        try {
+            ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        } catch (Exception e) {
+            showToast("Ошибка инициализации базы данных");
+            finish();
         }
-        else if(TextUtils.isEmpty(Type)){
-            Toast.makeText(this, "Добавьте породу питомца", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(Price)){
-            Toast.makeText(this, "Добавьте цена питомца", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(Info)){
-            Toast.makeText(this, "Добавьте описание питомца", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
-    private void OpenGallery() {
-        Intent galleryIntent = new Intent();
-        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, GALLERYPICK);
+    private void setupListeners() {
+        petImage.setOnClickListener(v -> openGallery());
+        addNewPetButton.setOnClickListener(v -> validatePetData());
+        birthDateButton.setOnClickListener(v -> showDatePickerDialog());
+        updateBirthDateButtonText();
+    }
+
+    private void validatePetData() {
+        categoryName = getIntent().getStringExtra("category");
+        Type = petType.getText().toString().trim();
+        Price = petPrice.getText().toString().trim();
+        Info = petInfo.getText().toString().trim();
+        PName = petName.getText().toString().trim();
+
+        if (ImageUri == null) {
+            showToast("Добавьте изображение питомца");
+            return;
+        }
+
+        if (TextUtils.isEmpty(PName)) {
+            showToast("Введите кличку питомца");
+            return;
+        }
+
+        if (TextUtils.isEmpty(Type)) {
+            showToast("Укажите породу питомца");
+            return;
+        }
+
+        if (TextUtils.isEmpty(Price)) {
+            showToast("Введите цену питомца");
+            return;
+        }
+
+        if (TextUtils.isEmpty(Info)) {
+            showToast("Добавьте описание питомца");
+            return;
+        }
+
+        storePetInformation();
+    }
+
+    private void storePetInformation() {
+        showLoadingDialog("Сохранение данных", "Пожалуйста, подождите...");
+
+        // Генерация ID
+        productRandomKey = generateProductId();
+
+        // Кодирование изображения
+        String encodedImage = encodeImage(ImageUri);
+        if (encodedImage == null) {
+            loadingBar.dismiss();
+            showToast("Ошибка обработки изображения");
+            return;
+        }
+
+        // Сохранение в базу данных
+        saveProductToDatabase(encodedImage);
+    }
+
+    private String encodeImage(Uri uri) {
+        try (InputStream inputStream = getContentResolver().openInputStream(uri)) {
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+            byte[] imageBytes = baos.toByteArray();
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String generateProductId() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy", Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HHmmss", Locale.getDefault());
+        saveCurrentDate = dateFormat.format(Calendar.getInstance().getTime());
+        saveCurrentTime = timeFormat.format(Calendar.getInstance().getTime());
+        return saveCurrentDate + saveCurrentTime;
+    }
+
+    private void saveProductToDatabase(String encodedImage) {
+        HashMap<String, Object> productMap = new HashMap<>();
+        productMap.put("pid", productRandomKey);
+        productMap.put("date", saveCurrentDate);
+        productMap.put("time", saveCurrentTime);
+        productMap.put("type", Type);
+        productMap.put("image", encodedImage);
+        productMap.put("category", categoryName);
+        productMap.put("price", Price);
+        productMap.put("pname", PName);
+        productMap.put("info", Info);
+        productMap.put("birthDate", getFormattedBirthDate());
+
+        ProductsRef.child(productRandomKey).setValue(productMap)
+                .addOnSuccessListener(aVoid -> {
+                    loadingBar.dismiss();
+                    showToast("Объявление добавлено");
+                    Intent intent = new Intent(AddNewPetActivity.this, MarketActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    loadingBar.dismiss();
+                    showToast("Ошибка: " + e.getMessage());
+                });
+    }
+
+    private String getFormattedBirthDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        return sdf.format(birthDate.getTime());
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Выберите изображение"), GALLERYPICK);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data, @NonNull ComponentCaller caller) {
-        super.onActivityResult(requestCode, resultCode, data, caller);
-
-        if(requestCode == GALLERYPICK && resultCode == RESULT_OK && data != null){
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERYPICK && resultCode == RESULT_OK && data != null) {
             ImageUri = data.getData();
-
             petImage.setImageURI(ImageUri);
         }
     }
 
-    private void init() {
-        categoryName = getIntent().getExtras().get("category").toString();
-
-        Toast.makeText(this, "Выбрана категория " + categoryName, Toast.LENGTH_SHORT).show();
-
-        petImage = findViewById(R.id.select_pet_image);
-        petName = findViewById(R.id.pet_name);
-        petType = findViewById(R.id.pet_type);
-        petType = findViewById(R.id.pet_type);
-        petPrice = findViewById(R.id.price);
-        petInfo = findViewById(R.id.pet_info);
-        addNewPetButton = findViewById(R.id.btn_app_new_pet);
-    }
-
-    private void setupDatePicker(Button button, Calendar calendar, String title) {
-        button.setOnClickListener(v -> showDatePicker(calendar, button, title));
-        updateButtonText(button, calendar);
-    }
-
-    private void showDatePicker(Calendar calendar, Button button, String title) {
-        new DatePickerDialog(
+    private void showDatePickerDialog() {
+        new android.app.DatePickerDialog(
                 this,
-                (view, year, month, day) -> {
-                    calendar.set(year, month, day);
-                    updateButtonText(button, calendar);
+                (view, year, month, dayOfMonth) -> {
+                    birthDate.set(year, month, dayOfMonth);
+                    updateBirthDateButtonText();
                 },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                birthDate.get(Calendar.YEAR),
+                birthDate.get(Calendar.MONTH),
+                birthDate.get(Calendar.DAY_OF_MONTH)
         ).show();
     }
 
-    private void updateButtonText(Button button, Calendar calendar) {
+    private void updateBirthDateButtonText() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        button.setText(sdf.format(calendar.getTime()));
+        birthDateButton.setText(sdf.format(birthDate.getTime()));
+    }
+
+    private void showLoadingDialog(String title, String message) {
+        loadingBar.setTitle(title);
+        loadingBar.setMessage(message);
+        loadingBar.show();
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

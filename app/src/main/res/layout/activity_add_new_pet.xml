@@ -1,102 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
+    android:paddingBottom="80dp"
     tools:context=".Market.AddNewPetActivity">
 
+    <!-- Изображение питомца -->
     <ImageView
         android:id="@+id/select_pet_image"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:src="@drawable/select_pet_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        />
+        android:layout_centerHorizontal="true"/>
 
-    <EditText
+    <!-- Кличка питомца -->
+    <com.rey.material.widget.EditText
         android:id="@+id/pet_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/select_pet_image"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:hint="Кличка питомца"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textStyle="italic"
-        android:padding="10dp"
+        android:inputType="textCapWords"
         android:background="@drawable/input_design"
-        android:layout_margin="20dp"
-        android:inputType="textMultiLine"
+        android:padding="12dp"/>
 
-        />
-
+    <!-- Спиннер пола -->
     <Spinner
         android:id="@+id/pet_gender_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/pet_name"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/input_design"/>
 
-    <EditText
+    <!-- Порода -->
+    <com.rey.material.widget.EditText
         android:id="@+id/pet_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/pet_gender_spinner"
-        android:hint="Укажите породу"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textStyle="italic"
-        android:padding="10dp"
-        android:background="@drawable/input_design"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:inputType="textMultiLine"
-        />
+        android:hint="Порода"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:inputType="textCapWords"
+        android:background="@drawable/input_design"
+        android:padding="12dp"/>
 
+    <!-- Дата рождения -->
     <TextView
         android:id="@+id/birth_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Дата рождения питомца:"
-        android:textSize="18sp"
-        android:layout_margin="10dp"
         android:layout_below="@id/pet_type"
-        />
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="Дата рождения:"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/birth_date_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Дата рождения"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_below="@id/birth_date"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Выбрать дату"
+        android:textAllCaps="false"
+        android:background="@drawable/input_design"
+        android:textColor="@color/black"/>
 
-
-    <EditText
+    <!-- Цена -->
+    <com.rey.material.widget.EditText
         android:id="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/birth_date_button"
-        android:hint="Введите цену"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textStyle="italic"
-        android:padding="10dp"
-        android:background="@drawable/input_design"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:inputType="textMultiLine"
-        />
+        android:hint="Цена"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:inputType="numberDecimal"
+        android:background="@drawable/input_design"
+        android:padding="12dp"/>
 
-
-    <EditText
+    <!-- Описание -->
+    <com.rey.material.widget.EditText
         android:id="@+id/pet_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,31 +115,30 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textStyle="italic"
-        android:padding="10dp"
+        android:padding="20dp"
         android:background="@drawable/input_design"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:inputType="textMultiLine"
+
         />
 
+    <!-- Кнопка добавления -->
     <Button
         android:id="@+id/btn_app_new_pet"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/pet_info"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_centerHorizontal="true"
-        android:padding="15dp"
-        android:background="@drawable/button"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:text="Добавить питомца"
-        android:textColor="@color/black"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        />
-
+        android:background="@drawable/button"
+        android:textColor="@color/black"
+        android:paddingVertical="14dp"/>
 
 </RelativeLayout>
