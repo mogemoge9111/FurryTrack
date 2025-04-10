@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_pets"
+        android:title="Питомцы"
+        android:icon="@drawable/pet"/>
+
+    <item
+        android:id="@+id/nav_posts"
+        android:title="Публикации"
+        android:icon="@drawable/posts_lenta"/>
+
+    <item
+        android:id="@+id/nav_market"
+        android:title="Объявления"
+        android:icon="@drawable/market"/>
+
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Профиль"
+        android:icon="@drawable/menu_user"/>
+
+</menu>

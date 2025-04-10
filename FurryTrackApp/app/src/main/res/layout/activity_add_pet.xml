@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Добавьте эти элементы в ваш макет -->
+        <ImageView
+            android:id="@+id/pet_image_view"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:src="@drawable/select_pet_image"
+            android:contentDescription="Фото питомца"
+            android:scaleType="centerCrop"/>
+
+        <Button
+            android:id="@+id/add_photo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Добавить фото"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/pet_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Имя питомца"
+            android:layout_marginBottom="16dp"/>
+
+        <Spinner
+            android:id="@+id/pet_type_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"/>
+
+        <Spinner
+            android:id="@+id/pet_gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Дата рождения"
+            />
+
+        <Button
+            android:id="@+id/birth_date_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Дата рождения"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Дата появления в семье"
+            />
+        <Button
+            android:id="@+id/adoption_date_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Дата появления в семье"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/important_info_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Важная информация"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/save_pet_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Сохранить питомца"/>
+
+    </LinearLayout>
+</ScrollView>
