@@ -3,7 +3,6 @@
 
 **Приложение для заботы о питомцах и сообщества любителей животных**
 
-Последнее обновление: 10 апреля 2025  
 [![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)](https://www.android.com)
 
 ## 📱 О приложении
