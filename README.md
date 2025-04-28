@@ -1,7 +1,7 @@
 Последнее обновление: 10 апреля 2025  
 # FurryTrack 🐾
 
-![FurryTrack Banner]([https://via.placeholder.com/800x200?text=FurryTrack+Banner](https://ibb.co/60fBS9Jv))
+![FurryTrack Banner](https://ibb.co/60fBS9Jv)
 
 **Приложение для заботы о питомцах и сообщества любителей животных**
 
