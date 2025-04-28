@@ -1,67 +1,163 @@
 Последнее обновление: 10 апреля 2025  
+# FurryTrack 🐾
 
-Описание проекта:
+![FurryTrack Banner](https://via.placeholder.com/800x200?text=FurryTrack+Banner)
+
+**Приложение для заботы о питомцах и сообщества любителей животных**
+
+Последнее обновление: 10 апреля 2025  
+[![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)](https://www.android.com)
+
+## 📱 О приложении
+
+FurryTrack - это многофункциональное приложение для владельцев домашних животных, которое помогает:
+- Организовывать уход за питомцами
+- Вести медицинские записи
+- Планировать кормление и активность
+- Покупать/продавать питомцев через маркетплейс
+- Общаться в сообществе любителей животных
+
+**Целевая аудитория:**
+- Владельцы собак, кошек и других домашних животных
+- Профессионалы (ветеринары, грумеры, кинологи)
+- Заводчики и питомники
+
+## ✨ Основные функции
+
+### 🐶 Управление питомцами
+- Добавление профилей питомцев
+- Ведение медицинских карт
+- Напоминания о прививках и процедурах
+- Статистика активности и здоровья
+
+### 🛒 Маркетплейс
+- Просмотр объявлений о продаже животных
+- Фильтрация по категориям и параметрам
+- Публикация своих объявлений
+- Чат с продавцами
+
+### 📱 Социальная сеть
+- Публикация фото и видео питомцев
+- Комментирование и лайки
+- Советы от ветеринаров
+- Личные сообщения
+
+### 👤 Профиль пользователя
+- Настройки аккаунта
+- Управление своими публикациями
+- Список питомцев
+- История активности
+
+## 🛠 Техническая реализация
+
+### 📦 Структура пакетов
+
+#### `BasicPetsWind` - Управление питомцами
+| Компонент | Описание |
+|-----------|----------|
+| `AddPetActivity` | Добавление питомца |
+| `PetDetailsActivity` | Просмотр информации о питомце |
+| `LineChartView` | Визуализация статистики |
+
+#### `Market` - Маркетплейс
+| Компонент | Описание |
+|-----------|----------|
+| `MarketActivity` | Главный экран объявлений |
+| `AddNewPetActivity` | Публикация нового объявления |
+| `CategoryPetActivity` | Фильтрация по категориям |
+
+#### `Posts` - Социальная сеть
+| Компонент | Описание |
+|-----------|----------|
+| `PostsActivity` | Лента публикаций |
+| `AddPostActivity` | Создание новой публикации |
+
+#### `Welcome` - Авторизация
+| Компонент | Описание |
+|-----------|----------|
+| `LoginActivity` | Вход в аккаунт |
+| `RegisterActivity` | Регистрация |
+| `AdminDeletePostsActivity` | Модерация контента |
+
+### 🔧 Технологии
+- **Язык:** Java
+- **Архитектура:** MVC
+- **Сетевые запросы:** Retrofit
+- **База данных:** Firebase Realtime Database
+- **Графика:** Custom Views, MPAndroidChart
+
+### Подробное описание проекта:
 Класс (его визуальная реализация) - За что отвечает
 Package BasicPetsWind – экран "Питомцы" и его компоненты:
 AddPetActivity.class (activity_add_pet.xml) - Добавление питомца в "список питомцев"
 
-AddPetRecordActivity.class
-(item_pet_record.xml)
-                                                  Добавление записи в "список записей о питомце"
+AddPetRecordActivity.class (item_pet_record.xml) - Добавление записи в "список записей о питомце"
                                                   
-LineChartView.class                                            Статистика компонентов 
-                                                            "списка записей о питомце"
+LineChartView.class  -  Статистика компонентов "списка записей о питомце"
                                                             
-Pet.class                                         Структура данных компонентов экрана "Питомцы"
+Pet.class - Структура данных компонентов экрана "Питомцы"
 
-PetActivity.class (activity_pet.xml)                            Главный экран "Питомцы"
+PetActivity.class (activity_pet.xml) - Главный экран "Питомцы"
 
-PetAdapter.class (item_pet.xml)                                 Отображение питомца
-PetDetailsActivity.class 
-(activity_pet_details.xml)
-                                                                Отображение питомца, информации о нём и "списка записей о питомце"
+PetAdapter.class (item_pet.xml) - Отображение питомца
+PetDetailsActivity.class (activity_pet_details.xml) - Отображение питомца, информации о нём и "списка записей о питомце"
 
-PetRecordsAdapter.class (item_pet_record.xml)                  Добавление новой записи о питомце
-Package Interface – интерфейсы приложения
-ItemClickListner.java                                     Нажатие кнопки "Добавить объявление" в экран "Объявления"
-Package Market – экран "Объявления" и его компоненты
-AddNewPetActivity.class 
-(activity_add_new_pet.xml)
-                                                                  Добавление нового питомца в "Объявления"
-CategoryPetActivity.class 
-(activity_category_pet.xml)
-                                                                    Экран с выбором категории (типа) питомца
-MarketActivity.class (app_bar_main.xml)                                     Главный экран "Объявлений"
-Package Model – модели для внутренней части кода
-LoginRequest.class                                      Запрос на получение данных о зарегистрированном пользователе с сервера
-LoginResponse.class                                     Получение данных о зарегистрированном пользователе с сервера
-Pet.class                                                Модель данных для "списка записей о питомце" для сервера
-PetRecord.class                                         Модель данных для записи "списка записей о питомце" на сервер
-Pets.class                                                 Модель данных для информации о питомце для "Объявлений"
-Post.class                                                Модель данных для информации о питомце для "Публикаций"
-Users.class                                                     Модель данных для информации о пользователе
-Package Network – инструменты для сервера и связки с backend-ом приложения
-ApiService.java                                                   Интерфейс для получения API с сервера
-RetrofitClient.class                                               Получений данных с сервера и связь с ним
+PetRecordsAdapter.class (item_pet_record.xml) - Добавление новой записи о питомце
 
-Package Posts – экран "Публикации" и его компоненты
-AddPostActivity.class (activity_add_post.xml)                      Добавление публикации на экран "Публикации"
-PostsActivity.class (activity_posts.xml)                                  Главный экран "Публикаций"
-PostsAdapter.class                                                Структура для сохранения данных в публикации
-Package Prevalent – работа с данными пользователя
-Prevalent.class                                                     Структура сохранения данных пользователя
-Package Profile - экран "Профиль" и его компоненты
-ProfileUserActivity.class
-(activity_profile_user.xml)
-                                                                          Главный экран "Профиля"
-Package PetViewHolder – структура данных для "Объявления"
-PetViewHolder.class                                                   Сохранение данных "Объявлений"
-Package Welcome – "Приветственный экран", экраны "Регистрации" и "Авторизации" и их компоненты
-AdminDeletePostsActivity.class 
-(activity_admin_delete_posts.xml)
-                                                            Экран администратора для удаления и редактирования контента, публикуемого пользователями (публикации и объявления)
-LoginActivity.class (activity_login.xml)                                    Экран "Авторизации"
-MainActivity.class (activity_main.xml)                                    "Приветственный экран"
-RegisterActivity.class (activity_register.xml)                              Экран "Регистрации"
-Settings – экран "Настройки" и его компоненты
-SettingsActivity.class (activity_settings.xml)                                Экран "Настройки"
+Package Interface – интерфейсы приложения:
+ItemClickListner.java - Нажатие кнопки "Добавить объявление" в экран "Объявления"
+
+Package Market – экран "Объявления" и его компоненты:
+AddNewPetActivity.class (activity_add_new_pet.xml) -  Добавление нового питомца в "Объявления"
+
+CategoryPetActivity.class (activity_category_pet.xml) - Экран с выбором категории (типа) питомца
+
+MarketActivity.class (app_bar_main.xml)  -   Главный экран "Объявлений"
+
+Package Model – модели для внутренней части кода:
+LoginRequest.class - Запрос на получение данных о зарегистрированном пользователе с сервера
+
+LoginResponse.class - Получение данных о зарегистрированном пользователе с сервера
+
+Pet.class  -  Модель данных для "списка записей о питомце" для сервера
+
+PetRecord.class -  Модель данных для записи "списка записей о питомце" на сервер
+
+Pets.class  -    Модель данных для информации о питомце для "Объявлений"
+
+Post.class -  Модель данных для информации о питомце для "Публикаций"
+
+Users.class -  Модель данных для информации о пользователе
+
+Package Network – инструменты для сервера и связки с backend-ом приложения:
+ApiService.java  -  Интерфейс для получения API с сервера
+
+RetrofitClient.class - Получений данных с сервера и связь с ним
+
+Package Posts – экран "Публикации" и его компоненты:
+AddPostActivity.class (activity_add_post.xml) -  Добавление публикации на экран "Публикации"
+
+PostsActivity.class (activity_posts.xml) -   Главный экран "Публикаций"
+
+PostsAdapter.class  -   Структура для сохранения данных в публикации
+
+Package Prevalent – работа с данными пользователя:
+Prevalent.class -    Структура сохранения данных пользователя
+
+Package Profile - экран "Профиль" и его компоненты:
+ProfileUserActivity.class(activity_profile_user.xml) - Главный экран "Профиля"
+
+Package PetViewHolder – структура данных для "Объявления":
+PetViewHolder.class  -  Сохранение данных "Объявлений"
+
+Package Welcome – "Приветственный экран", экраны "Регистрации" и "Авторизации" и их компоненты:
+AdminDeletePostsActivity.class (activity_admin_delete_posts.xml) -   Экран администратора для удаления и редактирования контента, публикуемого пользователями (публикации и объявления)
+
+LoginActivity.class (activity_login.xml)  - Экран "Авторизации"
+
+MainActivity.class (activity_main.xml)  -  "Приветственный экран"
+
+RegisterActivity.class (activity_register.xml) - Экран "Регистрации"
+
+Settings – экран "Настройки" и его компоненты:
+SettingsActivity.class (activity_settings.xml) -  Экран "Настройки"
